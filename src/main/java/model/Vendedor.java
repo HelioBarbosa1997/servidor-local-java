@@ -11,4 +11,6 @@ public class Vendedor extends Pessoa {
     public double getTaxaComissao() {
         return taxaComissao;
     }
+
+
 }

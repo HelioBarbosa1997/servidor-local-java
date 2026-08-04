@@ -33,7 +33,7 @@ public class Pessoa {
     }
 
     public void setIdade(String morada) {
-        this.morada = morada;
+        this.idade = idade;
     }
     public int getIdade() {
         return this.idade;
