@@ -28,21 +28,21 @@ public class ProdutoExterno {
         return this.title;
     }
 
-    public void setDescription(String title) {
+    public void setDescription(String description) {
         this.description = description;
     }
     public String getDescription() {
         return this.description;
     }
 
-    public void setCategory(String title) {
+    public void setCategory(String category) {
         this.category = category;
     }
     public String getCategory() {
         return this.category;
     }
 
-    public void setPrice(String title) {
+    public void setPrice(Double price) {
         this.price = price;
     }
     public Double getPrice() {

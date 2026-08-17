@@ -51,7 +51,7 @@ public class Main {
 
          */
 
-        System.out.println("//-----------Exercico 7----------//");
+        System.out.println("//----------- Exercico 7 ----------//");
         try {
             HttpClient cliente = HttpClient.newHttpClient();
 
