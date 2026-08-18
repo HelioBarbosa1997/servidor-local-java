@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/servicos")
+@RequestMapping("/api/auth/servicos")
 public class ServicoController {
     private final ServicoRepository repository;
     private final ServicoService servicoService;

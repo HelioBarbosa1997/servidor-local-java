@@ -55,7 +55,7 @@ public class AuthController {
 
         return ResponseEntity.ok(utilizador);
     }
-    @GetMapping("/api/v1/servicos/pesquisa")
+    @GetMapping("/pesquisa")
     public List<ServicoModel> pesquisarServicos(
             @RequestParam String termo) {
 

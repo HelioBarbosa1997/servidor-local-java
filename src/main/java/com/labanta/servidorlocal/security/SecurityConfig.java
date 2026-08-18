@@ -13,9 +13,11 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 public class SecurityConfig {
 
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SecurityConfig(CustomAuthenticationEntryPoint customAuthenticationEntryPoint) {
+    public SecurityConfig(CustomAuthenticationEntryPoint customAuthenticationEntryPoint, JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
     @Bean
@@ -31,10 +33,10 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
-                        //.requestMatchers("/api/v1/register").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/servicos/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/auth/servicos/**").permitAll()
                         .anyRequest().authenticated()
-                );
+                )
+                .addFilterBefore(jwtAuthenticationFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

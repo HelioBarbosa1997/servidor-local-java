@@ -1,7 +1,6 @@
 package com.labanta.servidorlocal.security;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.AuthenticationException;
@@ -18,6 +17,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+
 
         String json = "{\"Erro\":\"Erro ao autenticar ao servidor.\",\"Detalhes\":\"Token inexistente\"}";
         response.getWriter().write(json);
