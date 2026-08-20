@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final UtilizadorRepository utilizadorRepository;
     private final JwtService jwtService;
+    private final EmailService emailService;
 
-    public AuthService(UtilizadorRepository utilizadorRepository, JwtService jwtService) {
+    public AuthService(UtilizadorRepository utilizadorRepository, JwtService jwtService, EmailService emailService) {
         this.utilizadorRepository = utilizadorRepository;
         this.jwtService = jwtService;
+        this.emailService = emailService;
 
     }
 
@@ -25,13 +27,13 @@ public class AuthService {
         if (utilizadorRepository.findByUsername(dados.getUsername()).isPresent()) {
             throw new UtilizadorExistenteException("Este username já está em uso, por favor escolha outro.");
         }
-        Utilizador utilizador = new Utilizador(
+        Utilizador novoUtilizador = new Utilizador(
                 dados.getUsername(),
                 dados.getPassword(),
                 dados.getEmail()
         );
-
-        return utilizadorRepository.save(utilizador);
+        emailService.enviarEmailBoasVindas(novoUtilizador.getEmail(), novoUtilizador.getUsername());
+        return utilizadorRepository.save(novoUtilizador);
     }
     public String login(LoginRequestDTO dados) {
 

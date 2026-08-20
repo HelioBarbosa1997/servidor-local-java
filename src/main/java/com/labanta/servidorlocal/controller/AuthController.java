@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api/auth")
 public class AuthController {
     private final JwtService jwtService;
     private final AuthService authService;
@@ -29,7 +30,7 @@ public class AuthController {
         this.utilizadorRepository = utilizadorRepository;
     }
 
-    @PostMapping("/api/auth/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequestDTO request) {
 
         Optional<Utilizador> utilizador =
@@ -55,10 +56,5 @@ public class AuthController {
 
         return ResponseEntity.ok(utilizador);
     }
-    @GetMapping("/pesquisa")
-    public List<ServicoModel> pesquisarServicos(
-            @RequestParam String termo) {
 
-        return servicoService.pesquisarServicos(termo);
-    }
 }

@@ -49,6 +49,14 @@ public class ServicoController {
         @GetMapping("/{id}")
         public ServicoModel buscarServicoPorId(@PathVariable Long id) {
             return servicoService.buscarServicoPorId(id);
+
+    }
+    //exercicio 13
+        @GetMapping("/pesquisa")
+        public List<ServicoModel> pesquisarServicos(
+            @RequestParam String termo) {
+
+        return servicoService.pesquisarServicos(termo);
     }
 
 }

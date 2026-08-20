@@ -12,7 +12,7 @@ import java.util.Date;
 public class JwtService {
 
     private final SecretKey chaveSecreta = Keys.hmacShaKeyFor(
-            "$2a$12$eyKi5thqBp/yg7jCU8PCSeqaYJA2fUE6C2e2HlBQUT8PJ2xEW8KKW"
+            "isdkdfkigfjortrtigjipfekreuir93rifjgfqwo0r30kdofkefkkfkfkekdkksk"
                     .getBytes(StandardCharsets.UTF_8));
 
     public String gerarToken(String username) {
