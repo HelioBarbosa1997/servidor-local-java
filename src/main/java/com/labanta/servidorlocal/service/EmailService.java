@@ -24,5 +24,26 @@ public class EmailService {
         mailSender.send(mensagem);
     }
 
+    //Aula 19
+    public void enviarOrcamentoPorEmail(String emailDestino, String nomeServico, Double precoConvertido, String moeda) {
+
+        SimpleMailMessage mensagem = new SimpleMailMessage();
+        mensagem.setTo(emailDestino);
+        mensagem.setSubject("O teu Orçamento do servico no Marketplace");
+
+        // Criar o texto do corpo do email
+        String corpo = String.format(
+                "Olá!\n\nAqui tens o orçamento solicitado para o serviço:\n\n" +
+                        "Serviço: %s\n" +
+                        "Preço Final: %.2f %s\n\n" +
+                        "Este valor foi calculado com a taxa de câmbio em tempo real.\n" +
+                        "Obrigado por usares o nosso Marketplace!",
+                nomeServico, precoConvertido, moeda
+        );
+
+        mensagem.setText(corpo);
+        mailSender.send(mensagem);
+    }
+
 
 }
