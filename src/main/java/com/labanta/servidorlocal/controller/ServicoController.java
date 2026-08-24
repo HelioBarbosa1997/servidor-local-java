@@ -67,7 +67,7 @@ public class ServicoController {
         return servicoService.pesquisarServicos(termo);
     }
     //aula 19
-        @PostMapping("/{id}/ orcamneto")
+        @PostMapping("/{id}/orcamneto")
         public String pedirOrcamento(@PathVariable Long id, @RequestParam String emailDestino, @RequestParam(defaultValue = "CVE") String moeda) {
             // 1. Ir à Base de Dados buscar o Serviço
             ServicoModel servico = servicoService.buscarServicoPorId(id);

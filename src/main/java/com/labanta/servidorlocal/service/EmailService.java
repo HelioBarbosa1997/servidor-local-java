@@ -44,6 +44,22 @@ public class EmailService {
         mensagem.setText(corpo);
         mailSender.send(mensagem);
     }
+        //exercicio 16
+    public void enviarAlertaSeguranca(String emailDestino, String cidade, String pais) {
+
+        SimpleMailMessage mensagem = new SimpleMailMessage();
+
+        mensagem.setTo(emailDestino);
+        mensagem.setSubject("Alerta de Segurança - Marketplace");
+
+        mensagem.setText(
+                "Aviso de Segurança:\n\n" +
+                        "Detetámos uma nova atividade na tua conta do Marketplace " +
+                        "a partir de " + cidade + ", " + pais + ".\n\n" +
+                        "Se não foste tu, altera a tua password imediatamente!");
+
+        mailSender.send(mensagem);
+    }
 
 
 }
