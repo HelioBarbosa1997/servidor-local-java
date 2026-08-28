@@ -13,7 +13,7 @@ public class JwtService {
 
     private final SecretKey chaveSecreta = Keys.hmacShaKeyFor(
             "${JWT_SECRET}"
-                    .getBytes());
+                    .getBytes(StandardCharsets.UTF_8));
 
     public String gerarToken(String username) {
 
