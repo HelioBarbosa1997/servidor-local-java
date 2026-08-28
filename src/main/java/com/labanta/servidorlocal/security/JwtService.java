@@ -12,8 +12,8 @@ import java.util.Date;
 public class JwtService {
 
     private final SecretKey chaveSecreta = Keys.hmacShaKeyFor(
-            "isdkdfkigfjortrtigjipfekreuir93rifjgfqwo0r30kdofkefkkfkfkekdkksk"
-                    .getBytes(StandardCharsets.UTF_8));
+            "${JWT_SECRET}"
+                    .getBytes());
 
     public String gerarToken(String username) {
 
