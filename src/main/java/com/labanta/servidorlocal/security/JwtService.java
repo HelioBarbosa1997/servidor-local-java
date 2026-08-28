@@ -2,6 +2,7 @@ package com.labanta.servidorlocal.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -11,9 +12,11 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private final SecretKey chaveSecreta = Keys.hmacShaKeyFor(
-            "${JWT_SECRET}"
-                    .getBytes(StandardCharsets.UTF_8));
+    private final SecretKey chaveSecreta;
+
+    public JwtService(@Value("${JWT_SECRET}") String jwtSecret) {
+        this.chaveSecreta = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+    }
 
     public String gerarToken(String username) {
 
