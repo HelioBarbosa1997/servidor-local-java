@@ -3,6 +3,10 @@ package com.labanta.servidorlocal.service;
 import com.labanta.servidorlocal.exception.ServicoNaoEncontradoException;
 import com.labanta.servidorlocal.models.ServicoModel;
 import com.labanta.servidorlocal.repository.ServicoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +17,14 @@ public class ServicoService {
 
     public ServicoService(ServicoRepository repositorio) {
         this.repositorio = repositorio;
+
     }
+    public Page<ServicoModel> listarServico(Pageable pageable) {
+        return repositorio.findAll(pageable);
+    }
+
+
+
     public List<ServicoModel> aplicarDescontoEmAtivos(Double percentagem) {
             //Exercicio 11
         if (percentagem < 0 || percentagem > 100) {
@@ -46,6 +57,9 @@ public class ServicoService {
     }
     public List<ServicoModel> pesquisarServicos(String termo) {
         return repositorio.findByTituloContainingIgnoreCase(termo);
+    }
+    public ServicoModel save(ServicoModel servico) {
+        return repositorio.save(servico);
     }
 }
 

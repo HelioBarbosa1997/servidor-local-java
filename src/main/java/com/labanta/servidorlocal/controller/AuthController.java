@@ -12,6 +12,8 @@ import com.labanta.servidorlocal.service.AuthService;
 import com.labanta.servidorlocal.service.EmailService;
 import com.labanta.servidorlocal.service.GeoService;
 import com.labanta.servidorlocal.service.ServicoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +40,8 @@ public class AuthController {
         this.geoService = geoService;
         this.emailService = emailService;
     }
+    @Operation (summary = "Fazer um login",
+                description = "Realizar um login para ter acesso")
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequestDTO request) {
@@ -56,6 +60,9 @@ public class AuthController {
 
         return ResponseEntity.ok(token);
     }
+    @Operation (summary = "Realizar um registo",
+    description = "Realizar um registo para fazer login"
+    )
     @PostMapping("/registar")
     public ResponseEntity<Utilizador> registar(
             @RequestBody RegistoRequestDTO dados) {
@@ -65,6 +72,10 @@ public class AuthController {
         return ResponseEntity.ok(utilizador);
     }
     //exercicio 16
+    @Operation( summary = "Rota para fazer aleta-login",
+    description = "Rota para poder fazer um login de alerta")
+
+    @SecurityRequirement(name = "BearerAuth")
     @PostMapping("/alerta-login")
     public String alertaLogin(@RequestParam String email, @RequestParam String ip) {
 

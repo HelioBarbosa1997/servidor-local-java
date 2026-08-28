@@ -15,6 +15,7 @@ public class ServidorlocalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ServidorlocalApplication.class, args);
+
 	}
 
 }
